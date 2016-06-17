@@ -34,7 +34,7 @@ assign(Client_SQLite3.prototype, {
   driverName: 'sqlite3',
 
   _driver() {
-    return require('sqlite3')
+    // return require('sqlite3')
   },
 
   SchemaCompiler,

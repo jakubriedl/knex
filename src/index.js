@@ -18,6 +18,8 @@ const aliases = {
   'sqlite'    : 'sqlite3'
 };
 
+var mysqlDialect = require("./dialects/mysql/index.js");
+
 export default function Knex(config) {
   if (typeof config === 'string') {
     return new Knex(assign(parseConnection(config), arguments[2]))
@@ -29,7 +31,7 @@ export default function Knex(config) {
     Dialect = makeClient(config.client)
   } else {
     const clientName = config.client || config.dialect
-    Dialect = makeClient(require(`./dialects/${aliases[clientName] || clientName}/index.js`))
+    Dialect = makeClient(require(mysqlDialect))
   }
   if (typeof config.connection === 'string') {
     config = assign({}, config, {connection: parseConnection(config.connection).connection})
